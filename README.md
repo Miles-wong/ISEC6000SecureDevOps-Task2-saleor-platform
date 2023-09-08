@@ -36,7 +36,51 @@ Saleor Platform is the easiest way to start local development with all the major
 *Keep in mind this repository is for local development only and is not meant to be deployed in any production environment! If you're not a developer and just want to try out Saleor you can check our [live demo](https://demo.saleor.io/).*
 
 ## Requirements
-1. [Docker](https://docs.docker.com/install/)
+1. **docker install**: Install and configure the docker Command 
+
+   **On Linux**: 
+
+   ```
+   # Install docker
+   
+   
+   sudo apt update
+   sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+   
+   echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/<distro> $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   
+   sudo apt update
+   sudo apt install docker-ce docker-ce-cli containerd.io
+   
+   sudo systemctl start docker
+   sudo systemctl enable docker
+   
+   
+   ```
+
+   Verify Installation
+
+   ```
+   sudo docker --version
+   ```
+
+   ##### 2.docker compose install 
+
+   ```
+   # Install docker compose
+   
+   sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+   sudo chmod +x /usr/local/bin/docker-compose
+   
+   ```
+
+   ​    Verify Installation	
+
+   ```
+   docker-compose --version	
+   ```
+
 
 ## How to clone the repository?
 
@@ -81,7 +125,7 @@ docker compose up
 
 ## Where is the application running?
 - Saleor Core (API) - http://localhost:8000
-- Saleor Dashboard - http://localhost:9000
+- Saleor Dashboard - http://localhost:9003
 - Jaeger UI (APM) - http://localhost:16686
 - Mailpit (Test email interface) - http://localhost:8025
 
@@ -124,9 +168,9 @@ If you are getting issues with lack of available space, consider pruning your do
   - all networks not used by at least one container
   - all dangling images
   - all dangling build cache 
-  
+
   More info: https://docs.docker.com/engine/reference/commandline/system_prune/
-  
+
 <details><summary>I've been warned</summary>
 <p>
 
@@ -154,7 +198,7 @@ docker compose down --volumes db
 
 </p>
 </details>
-   
+
 ## How to run application parts?
   - `docker compose up api worker` for backend services only
   - `docker compose up` for backend and frontend services
@@ -169,6 +213,3 @@ Disclaimer: Everything you see here is open and free to use as long as you compl
 
 Some situations do call for extra code; we can cover exotic use cases or build you a custom e-commerce appliance.
 
-#### Crafted with ❤️ by [Saleor Commerce](https://saleor.io/)
-
-hello@saleor.io
